@@ -26,7 +26,7 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_login_screen);
 
         btnRegId = (Button) findViewById(R.id.GIDButton);
-        etRegId = (EditText) findViewById(R.id.userIdTag);
+        etRegId = (EditText) findViewById(R.id.IDTag);
 
         btnRegId.setOnClickListener(this);
     }

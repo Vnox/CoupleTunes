@@ -9,20 +9,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.android.vnoxdev.coupletunes.LoginScreen">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Phone ID"
-        android:id="@+id/userIdTag"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="89dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GetID"
         android:id="@+id/GIDButton"
-        android:layout_below="@+id/userIdTag"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="84dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/IDTag"
+        android:layout_below="@+id/GIDButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="My ID" />
 </RelativeLayout>
