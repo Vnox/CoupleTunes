@@ -17,4 +17,12 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="89dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GetID"
+        android:id="@+id/GIDButton"
+        android:layout_below="@+id/userIdTag"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
