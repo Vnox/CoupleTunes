@@ -1,5 +1,6 @@
 package com.android.vnoxdev.coupletunes;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import java.io.IOException;
 public class LoginScreen extends AppCompatActivity implements View.OnClickListener {
 
     Button btnRegId;
+    Button mapViewButton;
     EditText etRegId;
     GoogleCloudMessaging gcm;
     String regid;
@@ -26,10 +28,24 @@ public class LoginScreen extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_login_screen);
 
         btnRegId = (Button) findViewById(R.id.GIDButton);
+        mapViewButton = (Button) findViewById(R.id.mapButton);
         etRegId = (EditText) findViewById(R.id.IDTag);
 
         btnRegId.setOnClickListener(this);
+        mapViewButton.setOnClickListener(mapViewHandler);
+
+
+
     }
+
+    View.OnClickListener mapViewHandler = new View.OnClickListener() {
+        public void onClick(View v) {
+            // switch to mapView
+            Intent myIntent = new Intent(LoginScreen.this, MapView.class);
+
+            LoginScreen.this.startActivity(myIntent);
+        }
+    };
 
     public void getRegId() {
         new AsyncTask<Void, Void, String>() {
