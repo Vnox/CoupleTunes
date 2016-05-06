@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "804381347640",
+    "project_id": "coupletunesvnox"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804381347640:android:e9b353b895c17a71",
+        "android_client_info": {
+          "package_name": "com.android.vnoxdev.coupletunes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3kWvs6hZDH_PvUdapZxHGx3NFi1HV2xI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
