@@ -12,9 +12,10 @@ public class DataHolder {
     static ArrayList<VXLatLng> myLoc = new ArrayList<>();
     static ArrayList<String> myName = new ArrayList<>();
     static String myPhone = "";
-    static ArrayList<VXLocation> vxLocList = new ArrayList<>();
     static int currentChosen;
+    static ArrayList<VXLocation> vxLocList = new ArrayList<>();
     static ArrayList<VXLocation> vxLocTemp = new ArrayList<>();
+
     // sound setting
     // 1 --> only sound
     // 2 -> only vibe
