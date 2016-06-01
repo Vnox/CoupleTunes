@@ -1,6 +1,6 @@
 package com.example.vnox.coupletunesvx;
 
-import com.google.android.gms.maps.model.LatLng;
+import com.example.vnox.coupletunesvx.VXLatLng;
 
 import java.util.ArrayList;
 
@@ -9,11 +9,12 @@ import java.util.ArrayList;
  */
 public class DataHolder {
     private static String data;
-    static ArrayList<LatLng> myLoc = new ArrayList<>();
+    static ArrayList<VXLatLng> myLoc = new ArrayList<>();
     static ArrayList<String> myName = new ArrayList<>();
     static String myPhone = "";
     static ArrayList<VXLocation> vxLocList = new ArrayList<>();
     static int currentChosen;
+    static ArrayList<VXLocation> vxLocTemp = new ArrayList<>();
     // sound setting
     // 1 --> only sound
     // 2 -> only vibe

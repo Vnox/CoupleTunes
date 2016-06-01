@@ -8,7 +8,8 @@ import android.provider.MediaStore;
 
 import com.google.android.gms.common.data.*;
 import com.google.android.gms.common.data.DataHolder;
-import com.google.android.gms.maps.model.LatLng;
+//import com.google.android.gms.maps.model.LatLng;
+import com.example.vnox.coupletunesvx.VXLatLng;
 
 /**
  * Created by Leon on 5/30/2016.
@@ -23,24 +24,28 @@ public class VXLocation{
     // some fields
     private int vibeControl;
     private int toneControl;
-    private LatLng myLatLng;
-    private int soundSetting = 3;
+    private VXLatLng myLatLng;
+    private int soundSetting;
     private String myName;
     // Context myContext;
 
     public VXLocation() {
         this.toneControl = 1;
         this.vibeControl = 1;
+        this.soundSetting = 3;
+        this.myLatLng = new VXLatLng(0.0,0.0);
+        this.myName = "";
     }
 
-    public VXLocation(LatLng inLL, String inName) {
+    public VXLocation(VXLatLng inLL, String inName) {
         this.toneControl = 1;
         this.vibeControl = 1;
         this.myName = inName;
         this.myLatLng = inLL;
+        this.soundSetting = 3;
     }
 
-    public LatLng getLL(){
+    public VXLatLng getMyLatLng(){
         return this.myLatLng;
     }
 
@@ -48,25 +53,21 @@ public class VXLocation{
         return this.myName;
     }
 
-    public int getRingTone(){
+    public int getToneControl(){
         return this.toneControl;
     }
 
-    public int getVibePattern(){
-        return this.vibeControl;
-    }
+    public int getVibeControl(){ return this.vibeControl; }
 
-    public void setVibe(int setVal) {
+    public void setVibeControl(int setVal) {
         this.vibeControl = setVal;
     }
 
-    public void setTone(int setVal) {
+    public void setToneControl(int setVal) {
         this.toneControl = setVal;
     }
 
-    public void setName(String setVal){
-        this.myName = setVal;
-    }
+    public void setMyName(String setVal){ this.myName = setVal; }
 
     public void syncSoundSettings() {
         this.soundSetting = com.example.vnox.coupletunesvx.DataHolder.theSoundSetting;

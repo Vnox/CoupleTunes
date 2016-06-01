@@ -15,8 +15,8 @@ public class locSettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loc_setting);
 
         final String currName = DataHolder.vxLocList.get(DataHolder.currentChosen).getMyName();
-        final int currRing = DataHolder.vxLocList.get(DataHolder.currentChosen).getRingTone();
-        final int currVibe = DataHolder.vxLocList.get(DataHolder.currentChosen).getVibePattern();
+        final int currRing = DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl();
+        final int currVibe = DataHolder.vxLocList.get(DataHolder.currentChosen).getVibeControl();
         final VXLocation currVXLoc = DataHolder.vxLocList.get(DataHolder.currentChosen);
 
         final TextView infoTag = (TextView)findViewById(R.id.infoTag);
@@ -33,13 +33,13 @@ public class locSettingActivity extends AppCompatActivity {
         ringButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                if (DataHolder.vxLocList.get(DataHolder.currentChosen).getRingTone() < 3){
-                    DataHolder.vxLocList.get(DataHolder.currentChosen).setTone(DataHolder.vxLocList.get(DataHolder.currentChosen).getRingTone() + 1);
+                if (DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl() < 3){
+                    DataHolder.vxLocList.get(DataHolder.currentChosen).setToneControl(DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl() + 1);
                 }else{
-                    DataHolder.vxLocList.get(DataHolder.currentChosen).setTone(1);
+                    DataHolder.vxLocList.get(DataHolder.currentChosen).setToneControl(1);
                 }
 
-                ringTag.setText("Ring Tone : " + DataHolder.vxLocList.get(DataHolder.currentChosen).getRingTone());
+                ringTag.setText("Ring Tone : " + DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl());
             }
 
 

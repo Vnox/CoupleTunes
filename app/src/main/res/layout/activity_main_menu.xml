@@ -57,4 +57,12 @@
         android:layout_above="@+id/mapViewButton"
         android:layout_alignLeft="@+id/mapViewButton"
         android:layout_alignStart="@+id/mapViewButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Partner_LocationList"
+        android:id="@+id/partnerLocListButton"
+        android:layout_above="@+id/testButton"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

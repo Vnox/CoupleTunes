@@ -10,42 +10,42 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-//import com.google.android.gms.maps.model.LatLng;
-import com.example.vnox.coupletunesvx.VXLatLng;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.GenericTypeIndicator;
 import com.firebase.client.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class LocationListActivity extends AppCompatActivity {
+public class PartnerListView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location_list);
+        setContentView(R.layout.activity_partner_list_view);
 
-        final TextView locList = (TextView) findViewById(R.id.locList);
-        Button clearButton = (Button) findViewById(R.id.clearButton);
+        //final TextView locList = (TextView) findViewById(R.id.partnerloclist);
         String retrievedList = "";
 
-        ArrayList<VXLocation> vxLocList = new ArrayList<VXLocation>();
-        vxLocList = DataHolder.vxLocList;
+        ArrayList<VXLocation> vxLocList = new ArrayList<>();
+        //vxLocList = DataHolder.vxLocList;
+
+
 
         // Actually contacting firebase here
-        Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/user1");
+        Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/user2");
+
         //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
         //testFirebaseLoc.setTone(2);
-        myFirebaseRef.child("testloclist").setValue(vxLocList);
-
         myFirebaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<ArrayList<VXLocation>> vxlocindicator = new GenericTypeIndicator<ArrayList<VXLocation>>() {};
                 ArrayList<VXLocation> vxLocData = dataSnapshot.child("testloclist").getValue(vxlocindicator);
-                //Toast.makeText(PartnerListView.this,"Data Changed, with first being: " + vxLocData.get(0).getMyName() + ", total length is: " + vxLocData.size(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PartnerListView.this,"Data Changed, with first being: " + vxLocData.get(0).getMyName() + ", total length is: " + vxLocData.size(), Toast.LENGTH_SHORT).show();
                 DataHolder.vxLocTemp = vxLocData;
             }
 
@@ -55,7 +55,8 @@ public class LocationListActivity extends AppCompatActivity {
             }
         });
 
-
+        vxLocList = DataHolder.vxLocTemp;
+        Toast.makeText(PartnerListView.this,"Added, total length is: " + vxLocList.size(), Toast.LENGTH_SHORT).show();
         for(int i = 0; i< vxLocList.size(); i++){
             retrievedList += vxLocList.get(i).getMyName();
             retrievedList += " : ";
@@ -64,7 +65,7 @@ public class LocationListActivity extends AppCompatActivity {
             retrievedList += vxLocList.get(i).getMyLatLng().longitude;
             retrievedList += "\n";
             //the layout on which you are working
-            RelativeLayout layout = (RelativeLayout) findViewById(R.id.llid);
+            RelativeLayout layout = (RelativeLayout) findViewById(R.id.partnerllid);
 
             //set the properties for button
             Button btnTag = new Button(this);
@@ -73,14 +74,14 @@ public class LocationListActivity extends AppCompatActivity {
             btnTag.setY(btnTag.getY() + i * 140);
             btnTag.setY(btnTag.getY() + 240);
             btnTag.setX(180);
-            //btnTag.setTag("button" + i);
+            btnTag.setTag("button" + i);
             final int theTag = i;
 
             btnTag.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     // Perform action on click
                     DataHolder.currentChosen = theTag;
-                    startActivity(new Intent(LocationListActivity.this, locSettingActivity.class));
+                    startActivity(new Intent(PartnerListView.this, locSettingActivity.class));
                 }
             });
 
@@ -89,19 +90,6 @@ public class LocationListActivity extends AppCompatActivity {
 
 
         }
-        locList.setText("");
-
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                DataHolder.myLoc = new ArrayList<VXLatLng>();
-                DataHolder.myName = new ArrayList<String>();
-                DataHolder.vxLocList = new ArrayList<VXLocation>();
-                //locList.setText("All cleared ! Please add new location in mapView.");
-                startActivity(new Intent(LocationListActivity.this, MainMenuActivity.class));
-
-            }
-        });
-
+        //locList.setText("");
     }
 }

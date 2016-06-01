@@ -22,6 +22,7 @@ public class MainMenuActivity extends AppCompatActivity {
         final Button pairButton = (Button) findViewById(R.id.pairButton);
         final Button locationButton = (Button) findViewById(R.id.locationButton);
         final Button testButton = (Button) findViewById(R.id.testButton);
+        final Button partnerLocButton = (Button) findViewById(R.id.partnerLocListButton);
 
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -50,6 +51,15 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(new Intent(MainMenuActivity.this, TestViewActivity.class));
             }
         });
+
+        partnerLocButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                startActivity(new Intent(MainMenuActivity.this, PartnerListView.class));
+            }
+        });
+
+
 
     }
 }

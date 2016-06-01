@@ -50,6 +50,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.example.vnox.coupletunesvx.VXLatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
@@ -72,7 +73,7 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
         ActivityCompat.OnRequestPermissionsResultCallback {
 
     // Most important field here
-    ArrayList<LatLng> myLocationList = new ArrayList<>();
+    ArrayList<VXLatLng> myLocationList = new ArrayList<>();
     ArrayList<String> nameList = new ArrayList<>();
     //SharedPreferences myData = getSharedPreferences("LL", 0);
 
@@ -184,11 +185,13 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
 
               // Check near by markers here
                 for(int i = 0; i < myLocationList.size(); i++){
-                    LatLng toCheckLocation = myLocationList.get(i);
+                    VXLatLng toCheckLocation = myLocationList.get(i);
                     String theLocName = nameList.get(i);
                     Log.v("TAG2", "HERE !");
 
-                    if(checkLocationNear(myLocationNow, toCheckLocation)){
+                    LatLng toCheckLocationConverted = new LatLng(toCheckLocation.getLatitude(), toCheckLocation.getLongitude());
+
+                    if(checkLocationNear(myLocationNow, toCheckLocationConverted)){
                         // near location is found !
                         // SEND NOTIFICATIONS HERE //
                         //arriveFavoriteLocationDialog();
@@ -303,9 +306,9 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 locationName = nameInput.getText().toString();
-
+                VXLatLng vxLatLng = new VXLatLng(latLng.latitude, latLng.longitude);
                 // Add locatiuon to local storage
-                myLocationList.add(latLng);
+                myLocationList.add(vxLatLng);
                 nameList.add(locationName);
                 saveLocations();
                 Toast.makeText(getApplicationContext(), "Favorite Location Added", Toast.LENGTH_SHORT).show();
@@ -328,9 +331,10 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
     public boolean retrieveMarkers(){
 
         for(int i = 0; i < myLocationList.size(); i++){
-            LatLng newLL = myLocationList.get(i);
+            VXLatLng newLL = myLocationList.get(i);
+            LatLng newLLConverted = new LatLng(newLL.getLatitude(), newLL.getLongitude());
             Marker melbourne = myMap.addMarker(new MarkerOptions()
-                    .position(newLL)
+                    .position(newLLConverted)
                     .title("Favorite Location")
                     .snippet(nameList.get(i))
                     .icon(BitmapDescriptorFactory.fromAsset("map-marker-icon.png")));

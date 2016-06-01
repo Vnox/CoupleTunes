@@ -19,7 +19,7 @@ public class TestViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Perform action on click
                 VXLocation vxLoc = new VXLocation();
-                vxLoc.setTone(2);
+                vxLoc.setToneControl(2);
                 vxLoc.vibrateAndRingDep(TestViewActivity.this);
             }
         });
