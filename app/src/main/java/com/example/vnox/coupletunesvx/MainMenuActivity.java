@@ -5,6 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.GenericTypeIndicator;
+import com.firebase.client.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -17,6 +26,10 @@ public class MainMenuActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
+        Intent intent = new Intent(MainMenuActivity.this, VXDataManagementService.class);
+        startService(intent);
+
 
         final Button mapButton = (Button) findViewById(R.id.mapViewButton);
         final Button pairButton = (Button) findViewById(R.id.pairButton);

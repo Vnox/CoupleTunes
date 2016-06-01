@@ -35,26 +35,6 @@ public class PartnerListView extends AppCompatActivity {
 
 
 
-        // Actually contacting firebase here
-        Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/user2");
-
-        //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
-        //testFirebaseLoc.setTone(2);
-        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<VXLocation>> vxlocindicator = new GenericTypeIndicator<ArrayList<VXLocation>>() {};
-                ArrayList<VXLocation> vxLocData = dataSnapshot.child("testloclist").getValue(vxlocindicator);
-                //Toast.makeText(PartnerListView.this,"Data Changed, with first being: " + vxLocData.get(0).getMyName() + ", total length is: " + vxLocData.size(), Toast.LENGTH_SHORT).show();
-                DataHolder.vxLocTemp = vxLocData;
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-
         vxLocList = DataHolder.vxLocTemp;
         //Toast.makeText(PartnerListView.this,"Added, total length is: " + vxLocList.size(), Toast.LENGTH_SHORT).show();
         if(vxLocList == null){return;}

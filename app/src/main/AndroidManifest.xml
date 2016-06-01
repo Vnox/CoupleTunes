@@ -59,7 +59,12 @@
         <activity android:name=".LocationListActivity" />
         <activity android:name=".TestViewActivity" />
         <activity android:name=".locSettingActivity" />
-        <activity android:name=".PartnerListView"></activity>
+        <activity android:name=".PartnerListView" />
+
+        <service
+            android:name=".VXDataManagementService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

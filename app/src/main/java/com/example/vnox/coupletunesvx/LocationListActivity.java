@@ -40,21 +40,6 @@ public class LocationListActivity extends AppCompatActivity {
         //testFirebaseLoc.setTone(2);
         myFirebaseRef.child("testloclist").setValue(vxLocList);
 
-        myFirebaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<VXLocation>> vxlocindicator = new GenericTypeIndicator<ArrayList<VXLocation>>() {};
-                ArrayList<VXLocation> vxLocData = dataSnapshot.child("testloclist").getValue(vxlocindicator);
-                //Toast.makeText(PartnerListView.this,"Data Changed, with first being: " + vxLocData.get(0).getMyName() + ", total length is: " + vxLocData.size(), Toast.LENGTH_SHORT).show();
-                DataHolder.vxLocTemp = vxLocData;
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        });
-
 
         for(int i = 0; i< vxLocList.size(); i++){
             retrievedList += vxLocList.get(i).getMyName();
