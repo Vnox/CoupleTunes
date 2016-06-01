@@ -27,6 +27,7 @@ import android.location.Address;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
+import com.firebase.client.Firebase;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -184,40 +185,41 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
                 //arriveFavoriteLocationDialog();
 
               // Check near by markers here
-                for(int i = 0; i < myLocationList.size(); i++){
-                    VXLatLng toCheckLocation = myLocationList.get(i);
-                    String theLocName = nameList.get(i);
+                for(int i = 0; i < DataHolder.vxLocList.size(); i++){
+                    VXLatLng toCheckLocation = DataHolder.vxLocList.get(i).getMyLatLng();
+                    //String theLocName = nameList.get(i);
                     Log.v("TAG2", "HERE !");
 
                     LatLng toCheckLocationConverted = new LatLng(toCheckLocation.getLatitude(), toCheckLocation.getLongitude());
 
-                    if(checkLocationNear(myLocationNow, toCheckLocationConverted)){
-                        // near location is found !
-                        // SEND NOTIFICATIONS HERE //
-                        //arriveFavoriteLocationDialog();
-                        Log.v("TAG1", "Arrived");
-                        if (ActivityCompat.checkSelfPermission(thisActivity, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED ) {
-                            // TODO: Consider calling
-                            //    ActivityCompat#requestPermissions
-                            // here to request the missing permissions, and then overriding
-                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                            //                                          int[] grantResults)
-                            // to handle the case where the user grants the permission. See the documentation
-                            // for ActivityCompat#requestPermissions for more details.
-                            ActivityCompat.requestPermissions(thisActivity,
-                                    new String[]{Manifest.permission.SEND_SMS},
-                                    100);
-                            Log.d("test1", "ins");
-                            return;
-                        }else if(myMap != null) {
-                            Log.d("test2", "outs");
+                    if(checkLocationNear(myLocationNow, toCheckLocationConverted) &&  DataHolder.vxLocList.get(i).inRange == false){
+                        DataHolder.vxLocList.get(i).inRange = true;
+                        Log.v("LocCheck", "Arrived");
+                        // Arrival Start
+                        // Trigger THINGS HERE
 
-                            SmsManager sms = SmsManager.getDefault();
-                            sms.sendTextMessage(DataHolder.myPhone, null, "Your partner is at " + theLocName + " ! ", null, null);
-                            Toast.makeText(getApplicationContext(), "Your are at " + theLocName + " ! ", Toast.LENGTH_SHORT).show();
-                            break;
-                        }
-                        break;
+                        Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/user1");
+                        ArrayList<VXLocation> tlist = DataHolder.vxLocList;
+                        tlist.get(i).setArrival(true);
+                        myFirebaseRef.child("testloclist").setValue(tlist);
+                        tlist.get(i).setArrival(false);
+                        myFirebaseRef.child("testloclist").setValue(tlist);
+
+
+                        return;
+                    }else if(!checkLocationNear(myLocationNow, toCheckLocationConverted) &&  DataHolder.vxLocList.get(i).inRange == true){
+                        DataHolder.vxLocList.get(i).inRange = false;
+                        Log.v("LocCheck", "Departed");
+                        // Departure found
+                        //Trigger THINGS HERE
+
+                        Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/user1");
+                        ArrayList<VXLocation> tlist = DataHolder.vxLocList;
+                        tlist.get(i).setDeparture(true);
+                        myFirebaseRef.child("testloclist").setValue(tlist);
+                        tlist.get(i).setDeparture(false);
+                        myFirebaseRef.child("testloclist").setValue(tlist);
+
                     }
                 }
             }

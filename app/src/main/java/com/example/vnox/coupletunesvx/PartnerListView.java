@@ -32,9 +32,7 @@ public class PartnerListView extends AppCompatActivity {
 
         ArrayList<VXLocation> vxLocList = new ArrayList<>();
         //vxLocList = DataHolder.vxLocList;
-
-
-
+        //actually retrieve data here
         vxLocList = DataHolder.vxLocTemp;
         //Toast.makeText(PartnerListView.this,"Added, total length is: " + vxLocList.size(), Toast.LENGTH_SHORT).show();
         if(vxLocList == null){return;}

@@ -27,6 +27,11 @@ public class VXLocation{
     private VXLatLng myLatLng;
     private int soundSetting;
     private String myName;
+    private boolean arrival = false;
+    private boolean departure = false;
+    public boolean inRange = false;
+
+
     // Context myContext;
 
     public VXLocation() {
@@ -35,6 +40,8 @@ public class VXLocation{
         this.soundSetting = 3;
         this.myLatLng = new VXLatLng(0.0,0.0);
         this.myName = "";
+        this.arrival = false;
+        this.departure = false;
     }
 
     public VXLocation(VXLatLng inLL, String inName) {
@@ -43,6 +50,8 @@ public class VXLocation{
         this.myName = inName;
         this.myLatLng = inLL;
         this.soundSetting = 3;
+        this.arrival = false;
+        this.departure = false;
     }
 
     public VXLatLng getMyLatLng(){
@@ -71,6 +80,22 @@ public class VXLocation{
 
     public void syncSoundSettings() {
         this.soundSetting = com.example.vnox.coupletunesvx.DataHolder.theSoundSetting;
+    }
+
+    public void setDeparture(boolean departure) {
+        this.departure = departure;
+    }
+
+    public void setArrival(boolean arrival) {
+        this.arrival = arrival;
+    }
+
+    public boolean isArrival() {
+        return arrival;
+    }
+
+    public boolean isDeparture() {
+        return departure;
     }
 
     // Do the thing
@@ -129,6 +154,15 @@ public class VXLocation{
             }
             //   long deltaDuration = departurePlayer.getDuration();
             // play two tones
+            arrivalPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+
+                }
+            });
+
             arrivalPlayer.start();
             arrivalPlayer.setNextMediaPlayer(vnoxPlayer);
         }
