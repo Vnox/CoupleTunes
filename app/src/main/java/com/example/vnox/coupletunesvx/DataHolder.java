@@ -12,6 +12,14 @@ public class DataHolder {
     static ArrayList<LatLng> myLoc = new ArrayList<>();
     static ArrayList<String> myName = new ArrayList<>();
     static String myPhone = "";
+    static ArrayList<VXLocation> vxLocList = new ArrayList<>();
+    static int currentChosen;
+    // sound setting
+    // 1 --> only sound
+    // 2 -> only vibe
+    // 3 -> both vibe and sound
+    // 0 -> nothing
+    static int theSoundSetting;
 
     public static String getData() {return data;}
     public static void setData(String data) {DataHolder.data = data;}

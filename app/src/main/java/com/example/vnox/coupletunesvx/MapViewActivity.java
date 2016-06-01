@@ -85,7 +85,7 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
     private String TAG = "placeActivity";
     private MapViewActivity thisActivity = this;
     private AlertDialog.Builder dialogBuilder;
-    private AlertDialog.Builder dialogBuilder2;
+    //private AlertDialog.Builder dialogBuilder2;
 
     private static LatLng latLng;
     private static String locationName;
@@ -343,6 +343,18 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
 
         DataHolder.myLoc = myLocationList;
         DataHolder.myName = nameList;
+
+        ArrayList<VXLocation> vxLocList = new ArrayList<VXLocation>();
+
+        // create VXLocation Objects using data
+        for(int i = 0; i < nameList.size(); i++){
+            VXLocation vxLoc = new VXLocation(myLocationList.get(i), nameList.get(i));
+            vxLocList.add(vxLoc);
+        }
+
+        // save data back as xvLocList
+        DataHolder.vxLocList = vxLocList;
+
         if(DataHolder.myName != null && DataHolder.myLoc != null) {
             return true;
         }else{

@@ -48,4 +48,13 @@
         android:layout_centerHorizontal="true"
         android:textSize="44dp"
         android:textIsSelectable="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TESTPAGE"
+        android:id="@+id/testButton"
+        android:layout_above="@+id/mapViewButton"
+        android:layout_alignLeft="@+id/mapViewButton"
+        android:layout_alignStart="@+id/mapViewButton" />
 </RelativeLayout>
