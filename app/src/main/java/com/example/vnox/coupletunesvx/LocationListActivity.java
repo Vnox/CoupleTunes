@@ -35,7 +35,7 @@ public class LocationListActivity extends AppCompatActivity {
         vxLocList = DataHolder.vxLocList;
 
         // Actually contacting firebase here
-        Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/user1");
+        Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/" + DataHolder.partnerName );
         //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
         //testFirebaseLoc.setTone(2);
         myFirebaseRef.child("testloclist").setValue(vxLocList);

@@ -18,19 +18,19 @@
         android:id="@+id/partnerStatus"
         android:layout_marginTop="52dp"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/phoneInput"
-        android:layout_alignEnd="@+id/phoneInput" />
+        android:layout_alignRight="@+id/myInput"
+        android:layout_alignEnd="@+id/myInput" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="phone"
+        android:inputType="text"
         android:ems="10"
-        android:id="@+id/phoneInput"
+        android:id="@+id/myInput"
+        android:layout_marginTop="39dp"
+        android:text="MyUserName"
         android:layout_below="@+id/partnerStatus"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="63dp"
-        android:text="Phone" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -40,5 +40,24 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="39dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log Me In"
+        android:id="@+id/logInButton"
+        android:layout_above="@+id/confirmButton"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/partnerInput"
+        android:text="PartnerName"
+        android:layout_below="@+id/myInput"
+        android:layout_alignLeft="@+id/myInput"
+        android:layout_alignStart="@+id/myInput"
+        android:layout_alignRight="@+id/partnerStatus"
+        android:layout_alignEnd="@+id/partnerStatus" />
 
 </RelativeLayout>

@@ -11,7 +11,8 @@ public class DataHolder {
     private static String data;
     static ArrayList<VXLatLng> myLoc = new ArrayList<>();
     static ArrayList<String> myName = new ArrayList<>();
-    static String myPhone = "";
+    static String myUserName = "";
+    static String partnerName = "";
     static int currentChosen;
     static ArrayList<VXLocation> vxLocList = new ArrayList<>();
     static ArrayList<VXLocation> vxLocTemp = new ArrayList<>();

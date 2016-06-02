@@ -27,8 +27,7 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        Intent intent = new Intent(MainMenuActivity.this, VXDataManagementService.class);
-        startService(intent);
+
 
 
         final Button mapButton = (Button) findViewById(R.id.mapViewButton);

@@ -55,7 +55,9 @@ public class VXDataManagementService extends Service {
         public void run(){
             // doing listener things
             // Actually contacting firebase here
-            final Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/user1");
+            String myFirebaseUrl = "https://cse110-vxcoupletones.firebaseio.com/";
+            myFirebaseUrl += DataHolder.myUserName;
+            final Firebase myFirebaseRef = new Firebase(myFirebaseUrl);
 
             //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
             //testFirebaseLoc.setTone(2);
@@ -63,6 +65,14 @@ public class VXDataManagementService extends Service {
             myFirebaseRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    //Check partner first
+                    String newPartner = dataSnapshot.child("partner").getValue(String.class);
+                    if(DataHolder.partnerName == "" && newPartner != null){
+                        Toast.makeText(VXDataManagementService.this,"New partner added " + newPartner, Toast.LENGTH_SHORT).show();
+                        DataHolder.partnerName = newPartner;
+                    }
+
+
                     GenericTypeIndicator<ArrayList<VXLocation>> vxlocindicator = new GenericTypeIndicator<ArrayList<VXLocation>>() {};
                     ArrayList<VXLocation> vxLocData = dataSnapshot.child("testloclist").getValue(vxlocindicator);
                     //Toast.makeText(MainMenuActivity.this,"Data Changed, with first being: " + vxLocData.get(0).getMyName() + ", total length is: " + vxLocData.size(), Toast.LENGTH_SHORT).show();
