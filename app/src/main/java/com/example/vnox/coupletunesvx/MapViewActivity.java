@@ -73,12 +73,6 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
         GoogleMap.OnInfoWindowClickListener,
         ActivityCompat.OnRequestPermissionsResultCallback {
 
-    // Most important field here
-    ArrayList<VXLatLng> myLocationList = new ArrayList<>();
-    ArrayList<String> nameList = new ArrayList<>();
-    //SharedPreferences myData = getSharedPreferences("LL", 0);
-
-
     // Other fields
     private GoogleMap myMap;
     private UiSettings mUiSettings;
@@ -116,12 +110,7 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
     }
 
 
-    public static String getLocationName(){
-        return locationName;
-    }
-    public static LatLng getLatLng(){
-        return latLng;
-    }
+
 
     @Override
     public void onMapReady (GoogleMap googleMap){
@@ -139,8 +128,7 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
 
         myMap.setOnMyLocationButtonClickListener(this);
         myMap.setOnInfoWindowClickListener(this);
-        this.myLocationList = DataHolder.myLoc;
-        this.nameList = DataHolder.myName;
+
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -310,8 +298,8 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
                 locationName = nameInput.getText().toString();
                 VXLatLng vxLatLng = new VXLatLng(latLng.latitude, latLng.longitude);
                 // Add locatiuon to local storage
-                myLocationList.add(vxLatLng);
-                nameList.add(locationName);
+                DataHolder.myLoc.add(vxLatLng);
+                DataHolder.myName.add(locationName);
                 saveLocations();
                 Toast.makeText(getApplicationContext(), "Favorite Location Added", Toast.LENGTH_SHORT).show();
             }
@@ -332,13 +320,26 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
 
     public boolean retrieveMarkers(){
 
-        for(int i = 0; i < myLocationList.size(); i++){
-            VXLatLng newLL = myLocationList.get(i);
+        if(DataHolder.vxLocList != null){
+            DataHolder.myLoc = new ArrayList<>();
+            DataHolder.myName = new ArrayList<>();
+            for(int i = 0; i < DataHolder.vxLocList.size(); i++){
+                VXLatLng tLL = DataHolder.vxLocList.get(i).getMyLatLng();
+                String tName = DataHolder.vxLocList.get(i).getMyName();
+                DataHolder.myLoc.add(tLL);
+                DataHolder.myName.add(tName);
+            }
+        }else{
+           DataHolder.myLoc = new ArrayList<>();
+        }
+
+        for(int i = 0; i < DataHolder.myLoc.size(); i++){
+            VXLatLng newLL = DataHolder.myLoc.get(i);
             LatLng newLLConverted = new LatLng(newLL.getLatitude(), newLL.getLongitude());
             Marker melbourne = myMap.addMarker(new MarkerOptions()
                     .position(newLLConverted)
                     .title("Favorite Location")
-                    .snippet(nameList.get(i))
+                    .snippet(DataHolder.myName.get(i))
                     .icon(BitmapDescriptorFactory.fromAsset("map-marker-icon.png")));
         }
         return true;
@@ -347,14 +348,14 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
 
     public boolean saveLocations(){
 
-        DataHolder.myLoc = myLocationList;
-        DataHolder.myName = nameList;
+//        DataHolder.myLoc = myLocationList;
+//        DataHolder.myName = nameList;
 
         ArrayList<VXLocation> vxLocList = new ArrayList<VXLocation>();
 
         // create VXLocation Objects using data
-        for(int i = 0; i < nameList.size(); i++){
-            VXLocation vxLoc = new VXLocation(myLocationList.get(i), nameList.get(i));
+        for(int i = 0; i <  DataHolder.myLoc.size(); i++){
+            VXLocation vxLoc = new VXLocation( DataHolder.myLoc.get(i),  DataHolder.myName.get(i));
             vxLocList.add(vxLoc);
         }
 
@@ -372,9 +373,7 @@ public class MapViewActivity extends FragmentActivity implements OnConnectionFai
         }
     }
 
-    public ArrayList getMyLocationList(){
-        return myLocationList;
-    }
+
 
 
     @Override
