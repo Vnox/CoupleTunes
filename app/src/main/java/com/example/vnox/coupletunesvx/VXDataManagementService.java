@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
+import android.provider.ContactsContract;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -18,7 +19,10 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.GenericTypeIndicator;
 import com.firebase.client.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class VXDataManagementService extends Service {
     public VXDataManagementService() {
@@ -96,6 +100,12 @@ public class VXDataManagementService extends Service {
                                 builder.setContentIntent(contentIntent);
                                 NotificationManager nManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                                 nManager.notify(NOTIFICATION_ID, builder.build());
+
+                                //Modify previous visited list now
+                                DateFormat df = new SimpleDateFormat("K:mm a, z");
+                                String date = df.format(Calendar.getInstance().getTime());
+                                String newLoc = "Visited: " + vxLocData.get(i).getMyName() + " At time : " + date;
+                                DataHolder.historyList.add(newLoc);
 
                             }
                         }

@@ -35,11 +35,19 @@ public class MainMenuActivity extends AppCompatActivity {
         final Button locationButton = (Button) findViewById(R.id.locationButton);
         final Button testButton = (Button) findViewById(R.id.testButton);
         final Button partnerLocButton = (Button) findViewById(R.id.partnerLocListButton);
+        final Button previousButton = (Button) findViewById(R.id.previousButton);
 
         mapButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
                 startActivity(new Intent(MainMenuActivity.this, MapViewActivity.class));
+            }
+        });
+
+        previousButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                startActivity(new Intent(MainMenuActivity.this, PreviousListViewActivity.class));
             }
         });
 

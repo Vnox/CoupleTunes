@@ -44,7 +44,7 @@ public class pairActivity extends AppCompatActivity {
                 // Perform action on click
                 String partnerName = partnerInput.getText().toString();
                 //DataHolder.partnerName = partnerName;
-                partnerStatus.setText("Added partner : " + DataHolder.partnerName );
+                partnerStatus.setText("Partner Added" );
                 confirmButton.setText("Finished");
                 String myFirebaseUrl = "https://cse110-vxcoupletones.firebaseio.com/";
                 myFirebaseUrl += partnerName;

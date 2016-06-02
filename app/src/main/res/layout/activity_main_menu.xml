@@ -65,4 +65,13 @@
         android:id="@+id/partnerLocListButton"
         android:layout_above="@+id/testButton"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PreviousVisited"
+        android:id="@+id/previousButton"
+        android:layout_above="@+id/partnerLocListButton"
+        android:layout_alignRight="@+id/locationButton"
+        android:layout_alignEnd="@+id/locationButton" />
 </RelativeLayout>
