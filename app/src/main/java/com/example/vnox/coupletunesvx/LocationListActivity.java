@@ -64,39 +64,44 @@ public class LocationListActivity extends AppCompatActivity {
         });
 
         vxLocList = DataHolder.vxLocList;
-        for(int i = 0; i< vxLocList.size(); i++){
-            retrievedList += vxLocList.get(i).getMyName();
-            retrievedList += " : ";
-            retrievedList += vxLocList.get(i).getMyLatLng().latitude;
-            retrievedList += " , ";
-            retrievedList += vxLocList.get(i).getMyLatLng().longitude;
-            retrievedList += "\n";
-            //the layout on which you are working
-            RelativeLayout layout = (RelativeLayout) findViewById(R.id.llid);
+        if(vxLocList != null){
+            for(int i = 0; i< vxLocList.size(); i++){
+                retrievedList += vxLocList.get(i).getMyName();
+                retrievedList += " : ";
+                retrievedList += vxLocList.get(i).getMyLatLng().latitude;
+                retrievedList += " , ";
+                retrievedList += vxLocList.get(i).getMyLatLng().longitude;
+                retrievedList += "\n";
+                //the layout on which you are working
+                RelativeLayout layout = (RelativeLayout) findViewById(R.id.llid);
 
-            //set the properties for button
-            Button btnTag = new Button(this);
-            btnTag.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            btnTag.setText("Location " + (i + 1) + " : " + vxLocList.get(i).getMyName());
-            btnTag.setY(btnTag.getY() + i * 140);
-            btnTag.setY(btnTag.getY() + 240);
-            btnTag.setX(180);
-            //btnTag.setTag("button" + i);
-            final int theTag = i;
+                //set the properties for button
+                Button btnTag = new Button(this);
+                btnTag.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                btnTag.setText("Location " + (i + 1) + " : " + vxLocList.get(i).getMyName());
+                btnTag.setY(btnTag.getY() + i * 140);
+                btnTag.setY(btnTag.getY() + 240);
+                btnTag.setX(180);
+                //btnTag.setTag("button" + i);
+                final int theTag = i;
 
-            btnTag.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // Perform action on click
-                    DataHolder.currentChosen = theTag;
-                    startActivity(new Intent(LocationListActivity.this, locSettingActivity.class));
-                }
-            });
+                btnTag.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        // Perform action on click
+                        DataHolder.currentChosen = theTag;
+                        startActivity(new Intent(LocationListActivity.this, locSettingActivity.class));
+                    }
+                });
 
-            //add button to the layout
-            layout.addView(btnTag);
+                //add button to the layout
+                layout.addView(btnTag);
+
+
+            }
 
 
         }
+
         locList.setText("");
 
         clearButton.setOnClickListener(new View.OnClickListener() {

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
+import java.util.ArrayList;
+
 public class locSettingActivity extends AppCompatActivity {
 
     @Override
@@ -77,10 +79,7 @@ public class locSettingActivity extends AppCompatActivity {
             }
         });
 
-        if(DataHolder.isMyList == true){
-            ringButton.setEnabled(false);
-            vibeButton.setEnabled(false);
-        }
+
 
         final Button testButton = (Button) findViewById(R.id.testPlayButton);
 
@@ -91,5 +90,28 @@ public class locSettingActivity extends AppCompatActivity {
 
             }
         });
+
+        final Button deleteButton = (Button) findViewById(R.id.deleteButton);
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                DataHolder.vxLocList.remove(DataHolder.currentChosen);
+                ArrayList tempList = DataHolder.vxLocList;
+                Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/" + DataHolder.partnerName );
+                //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
+                //testFirebaseLoc.setTone(2);
+                myFirebaseRef.child("testloclist").setValue(tempList);
+                startActivity(new Intent(locSettingActivity.this, LocationListActivity.class));
+
+            }
+        });
+
+        if(DataHolder.isMyList == true){
+            ringButton.setEnabled(false);
+            vibeButton.setEnabled(false);
+        }else{
+            deleteButton.setEnabled(false);
+        }
     }
 }
