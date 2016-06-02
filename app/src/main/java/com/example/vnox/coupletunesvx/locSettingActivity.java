@@ -102,7 +102,7 @@ public class locSettingActivity extends AppCompatActivity {
                 //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
                 //testFirebaseLoc.setTone(2);
                 myFirebaseRef.child("testloclist").setValue(tempList);
-                startActivity(new Intent(locSettingActivity.this, LocationListActivity.class));
+                startActivity(new Intent(locSettingActivity.this, MainMenuActivity.class));
 
             }
         });
