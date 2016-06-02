@@ -16,6 +16,7 @@ public class DataHolder {
     static int currentChosen;
     static ArrayList<VXLocation> vxLocList = new ArrayList<>();
     static ArrayList<VXLocation> vxLocTemp = new ArrayList<>();
+    static boolean isMyList;
 
     // sound setting
     // 1 --> only sound
