@@ -1,6 +1,7 @@
 package com.example.vnox.coupletunesvx;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,7 @@ public class PartnerListView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partner_list_view);
 
+        DataHolder.isMyList = false;
         //final TextView locList = (TextView) findViewById(R.id.partnerloclist);
         String retrievedList = "";
 

@@ -1,8 +1,14 @@
 package com.example.vnox.coupletunesvx;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.provider.ContactsContract;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -26,21 +32,38 @@ public class LocationListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
+        DataHolder.isMyList = true;
 
         final TextView locList = (TextView) findViewById(R.id.locList);
         Button clearButton = (Button) findViewById(R.id.clearButton);
         String retrievedList = "";
 
         ArrayList<VXLocation> vxLocList = new ArrayList<VXLocation>();
-        vxLocList = DataHolder.vxLocList;
+
 
         // Actually contacting firebase here
         Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/" + DataHolder.partnerName );
         //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
         //testFirebaseLoc.setTone(2);
-        myFirebaseRef.child("testloclist").setValue(vxLocList);
+        //myFirebaseRef.child("testloclist").setValue(vxLocList);
+
+        myFirebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<ArrayList<VXLocation>> vxlocindicator = new GenericTypeIndicator<ArrayList<VXLocation>>() {};
+                ArrayList<VXLocation> vxLocData = dataSnapshot.child("testloclist").getValue(vxlocindicator);
+                DataHolder.vxLocList = vxLocData;
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
 
 
+        });
+
+        vxLocList = DataHolder.vxLocList;
         for(int i = 0; i< vxLocList.size(); i++){
             retrievedList += vxLocList.get(i).getMyName();
             retrievedList += " : ";

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+
 public class locSettingActivity extends AppCompatActivity {
 
     @Override
@@ -14,10 +16,25 @@ public class locSettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loc_setting);
 
-        final String currName = DataHolder.vxLocList.get(DataHolder.currentChosen).getMyName();
-        final int currRing = DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl();
-        final int currVibe = DataHolder.vxLocList.get(DataHolder.currentChosen).getVibeControl();
-        final VXLocation currVXLoc = DataHolder.vxLocList.get(DataHolder.currentChosen);
+
+        String currName = DataHolder.vxLocList.get(DataHolder.currentChosen).getMyName();
+        int currRing = 0;
+        int currVibe = 0;
+        final VXLocation currVXLoc;
+
+        if(DataHolder.isMyList == true){
+            // Editing my List
+            currName = DataHolder.vxLocList.get(DataHolder.currentChosen).getMyName();
+            currRing = DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl();
+            currVibe = DataHolder.vxLocList.get(DataHolder.currentChosen).getVibeControl();
+            currVXLoc = DataHolder.vxLocList.get(DataHolder.currentChosen);
+        }else{
+            currName = DataHolder.vxLocTemp.get(DataHolder.currentChosen).getMyName();
+            currRing = DataHolder.vxLocTemp.get(DataHolder.currentChosen).getToneControl();
+            currVibe = DataHolder.vxLocTemp.get(DataHolder.currentChosen).getVibeControl();
+            currVXLoc = DataHolder.vxLocTemp.get(DataHolder.currentChosen);
+        }
+        //currVXLoc = DataHolder.vxLocTemp.get(DataHolder.currentChosen);
 
         final TextView infoTag = (TextView)findViewById(R.id.infoTag);
         infoTag.setText("You are now configuring location : " + currName);
@@ -30,16 +47,22 @@ public class locSettingActivity extends AppCompatActivity {
 
         final Button ringButton = (Button) findViewById(R.id.ringButton);
 
+
+
         ringButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                if (DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl() < 3){
-                    DataHolder.vxLocList.get(DataHolder.currentChosen).setToneControl(DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl() + 1);
+                if (DataHolder.vxLocTemp.get(DataHolder.currentChosen).getToneControl() < 3){
+                    DataHolder.vxLocTemp.get(DataHolder.currentChosen).setToneControl(DataHolder.vxLocTemp.get(DataHolder.currentChosen).getToneControl() + 1);
                 }else{
-                    DataHolder.vxLocList.get(DataHolder.currentChosen).setToneControl(1);
+                    DataHolder.vxLocTemp.get(DataHolder.currentChosen).setToneControl(1);
                 }
 
-                ringTag.setText("Ring Tone : " + DataHolder.vxLocList.get(DataHolder.currentChosen).getToneControl());
+                ringTag.setText("Ring Tone : " + DataHolder.vxLocTemp.get(DataHolder.currentChosen).getToneControl());
+                Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/" + DataHolder.myUserName );
+                //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
+                //testFirebaseLoc.setTone(2);
+                myFirebaseRef.child("testloclist").setValue(DataHolder.vxLocTemp);
             }
 
 
@@ -53,6 +76,11 @@ public class locSettingActivity extends AppCompatActivity {
 
             }
         });
+
+        if(DataHolder.isMyList == true){
+            ringButton.setEnabled(false);
+            vibeButton.setEnabled(false);
+        }
 
         final Button testButton = (Button) findViewById(R.id.testPlayButton);
 
