@@ -46,7 +46,7 @@ public class VXLocation{
         this.myLatLng = new VXLatLng(0.0,0.0); // Default LatLag data is 0.0, 0.0
         this.myName = "";                      // Default location name is an empty string
         this.arrival = false;                 // Default arrival flag is false
-        this.departure = false;              // Default departure flag is false
+        this.departure = false;               // Default departure flag is false
     }
 
     public VXLocation(VXLatLng inLL, String inName) {
