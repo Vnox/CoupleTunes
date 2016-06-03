@@ -135,8 +135,6 @@ public class VXDataManagementService extends Service {
                 public void onCancelled(FirebaseError firebaseError) {
 
                 }
-
-
             });
         }
     }
