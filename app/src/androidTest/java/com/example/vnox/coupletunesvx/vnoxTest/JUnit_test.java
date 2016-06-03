@@ -20,45 +20,53 @@ public class JUnit_test extends ActivityInstrumentationTestCase2<MapViewActivity
         super(MapViewActivity.class);
     }
 
-    public void test_saveLocations(){
-        mapViewActivity = getActivity();
-        assertTrue(mapViewActivity.saveLocations());
-    }
-
-    public void test_retrieveMarkers(){
-        mapViewActivity = getActivity();
-        //test if it returns true
-        assertTrue(mapViewActivity.retrieveMarkers());
-
-    }
-
-    //Scenario Based Tests
-    public void test_beforeAdd(){
-        mapViewActivity = getActivity();
-        //Before adding location, there shouldn't be anything in it.
-        assertEquals(0, mapViewActivity.getMyLocationList().size());
-    }
-
-    public void test_firstAdd(){
-        mapViewActivity = getActivity();
-        LatLng testLL = new LatLng(0, 0);
-        mapViewActivity.getMyLocationList().add(testLL);
-        //Before adding location, there shouldn't be anything in it.
-        assertEquals(1, mapViewActivity.getMyLocationList().size());
-    }
-
-    // Different Cases
-    public void test_compareLocations(){
-        mapViewActivity = getActivity();
-
-        LatLng LLA = new LatLng(1, 1);
-        LatLng LLB = new LatLng(1.000001, 1.000001);
-        LatLng LLC = new LatLng(9, 9);
-
-        assertEquals(true, mapViewActivity.checkLocationNear(LLA, LLB));
-        assertEquals(false, mapViewActivity.checkLocationNear(LLB, LLC));
-        assertEquals(false, mapViewActivity.checkLocationNear(LLA, LLC));
-        assertEquals(true, mapViewActivity.checkLocationNear(LLA, LLA));
+    /**
+     * Test 1: A List of Partner's Favorite Location
+     * Given that I have a partner
+     * And I haven’t added any favorite locations in the list
+     * When I tab on my partner’s favorite locations
+     * Then it will show the contents(name, location and tone info) of the list which allow me to edit. 
+     * /
+    
+    
+    /**
+     * Test 2: An Ordered List of Partner’s Visiting History of a Day
+     * Given that I have a partner and a non-empty list of my partner’s favorite location
+     * And my partner visited some locations on the list today
+     * When I click on ‘History of Today’
+     * Then it will show the location(s) and time he/she visited today.
+     * /
+    
+    /**
+     * Test 3: Tones/Vibrations for My Partner’s Arrival and Departure of a Favorite Location
+     * Given that I have a partner, a non-empty location list
+     * And both my device is connected with the Internet 
+     * And a location in the list is set to a tone/vibration
+     * When my partner visit the location, the tone rings/device vibrates
+     * /
+    
+    /**
+     * Test 4: Tone Setting
+     * Given I have a partner, a non-empty location list
+     * When I go to the tone setting and click on one of the location in the list 
+     * I can change the tone of that location(arrival and departure)
+     * /
+    
+    /**
+     * Test 5: Vibration Setting
+     * Given I have a partner, a non-empty location list
+     * When I go to the vibration setting and click on one of the location in the list 
+     * I can change the vibration of that location(arrival and departure)
+     * /
+    
+    /**
+     * Test 6: Notification Options of Tones and Vibrations
+     * Given that I set a location with both tones and vibrations in my location list
+     * And my device is connected to the Internet
+     * When my partner visite/depart the location
+     * There will be both tones and vibration
+     * /
+    
 
     }
 
