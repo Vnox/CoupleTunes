@@ -5,7 +5,8 @@ import com.example.vnox.coupletunesvx.VXLatLng;
 import java.util.ArrayList;
 
 /**
- * Created by Leon on 5/7/2016.
+ * The class that actually holds location data
+ * @author      Shuangli Zhou, Zuqi Chen
  */
 public class DataHolder {
     private static String data;
@@ -26,6 +27,15 @@ public class DataHolder {
     // 0 -> nothing
     static int theSoundSetting;
 
+    /**
+     * Getter method to get the data object
+     * @return the string representation of the data object
+     */
     public static String getData() {return data;}
+
+    /**
+     * Setter to set the data field of the object
+     * @param  String data to set
+     */
     public static void setData(String data) {DataHolder.data = data;}
 }
