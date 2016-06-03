@@ -58,11 +58,18 @@ public class VXLocation{
         this.arrival = false;
         this.departure = false;
     }
-
+    /**
+     * Getter for returning VXLatLng object
+     * @return VXLatLng that represents the latitude and longitude of the location
+     */
     public VXLatLng getMyLatLng(){
         return this.myLatLng;
     }
 
+    /**
+     * Getter for myName
+     * @return A string that represents the name of this location
+     */
     public String getMyName(){
         return this.myName;
     }
