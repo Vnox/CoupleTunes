@@ -18,8 +18,7 @@ public class locSettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loc_setting);
 
-
-        String currName = DataHolder.vxLocList.get(DataHolder.currentChosen).getMyName();
+        String currName;
         int currRing = 0;
         int currVibe = 0;
         final VXLocation currVXLoc;
@@ -60,7 +59,9 @@ public class locSettingActivity extends AppCompatActivity {
                     DataHolder.vxLocTemp.get(DataHolder.currentChosen).setToneControl(1);
                 }
 
+
                 ringTag.setText("Ring Tone : " + DataHolder.vxLocTemp.get(DataHolder.currentChosen).getToneControl());
+
                 Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/" + DataHolder.myUserName );
                 //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
                 //testFirebaseLoc.setTone(2);
@@ -75,6 +76,18 @@ public class locSettingActivity extends AppCompatActivity {
         vibeButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+                if (DataHolder.vxLocTemp.get(DataHolder.currentChosen).getVibeControl() < 3){
+                    DataHolder.vxLocTemp.get(DataHolder.currentChosen).setVibeControl(DataHolder.vxLocTemp.get(DataHolder.currentChosen).getVibeControl() + 1);
+                }else{
+                    DataHolder.vxLocTemp.get(DataHolder.currentChosen).setVibeControl(1);
+                }
+
+
+                vibeTag.setText("Vibration Pattern : " + DataHolder.vxLocTemp.get(DataHolder.currentChosen).getVibeControl());
+                Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/" + DataHolder.myUserName );
+                //VXLocation testFirebaseLoc = new VXLocation(new LatLng(23.0,24.0), "hahaloc");
+                //testFirebaseLoc.setTone(2);
+                myFirebaseRef.child("testloclist").setValue(DataHolder.vxLocTemp);
 
             }
         });
@@ -86,6 +99,7 @@ public class locSettingActivity extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
+
                 currVXLoc.vibrateAndRingTest(locSettingActivity.this);
 
             }

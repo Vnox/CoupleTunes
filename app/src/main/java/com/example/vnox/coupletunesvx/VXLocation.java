@@ -5,6 +5,7 @@ import android.location.Location;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.provider.MediaStore;
+import android.widget.Toast;
 
 import com.google.android.gms.common.data.*;
 import com.google.android.gms.common.data.DataHolder;
@@ -222,9 +223,12 @@ public class VXLocation{
 
         if (this.vibeControl == 1) {
             v.vibrate(pattern1, 0);
+            Toast.makeText(theCt,"Vibrating 1 !", Toast.LENGTH_SHORT).show();
         } else if (this.vibeControl == 2) {
+            Toast.makeText(theCt,"Vibrating 2 !", Toast.LENGTH_SHORT).show();
             v.vibrate(pattern2, 0);
         } else if (this.vibeControl == 3) {
+            Toast.makeText(theCt,"Vibrating 3 !", Toast.LENGTH_SHORT).show();
             v.vibrate(pattern3, 0);
         }
 
