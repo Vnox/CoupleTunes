@@ -15,33 +15,38 @@ import com.example.vnox.coupletunesvx.VXLatLng;
  * Created by Leon on 5/30/2016.
  */
 
-/*Class VXLocation
-* The location class specifically
-* designed for CSE110 Milestone 2
-* created by Vnox - Shuangli Zhou*/
+/**
+ * Class VXLocation
+ * The location class specifically
+ * designed for CSE110 Milestone 2
+ * created by Vnox - Shuangli Zhou
+ * proof read by Thomas- Junru Ren
+ */
 public class VXLocation{
 
     // Data Field
-    private int vibeControl;           // Record the choice of vibration
-    private int toneControl;           // Record the choice of tone
-    private VXLatLng myLatLng;          // Record an Adapter for Google's LatLag class
-    private int soundSetting;          // Record the choice of sound
-    private String myName;              // Record the name of this Location
-    private boolean arrival = false;  // Flag for checking arrival
-    private boolean departure = false;// Flag for checking departure
-    public boolean inRange = false;   // Flag for checking if in the range of this Location
+    private int vibeControl;            // Record the choice of vibration
+    private int toneControl;            // Record the choice of tone
+    private VXLatLng myLatLng;           // Record an Adapter for Google's LatLag class
+    private int soundSetting;           // Record the choice of sound
+    private String myName;               // Record the name of this Location
+    private boolean arrival = false;   // Flag for checking arrival
+    private boolean departure = false; // Flag for checking departure
+    public boolean inRange = false;    // Flag for checking if in the range of this Location
 
 
     // Context myContext;
-
+    /*
+     * Default constructor for VXLocation
+     */
     public VXLocation() {
-        this.toneControl = 1;
-        this.vibeControl = 1;
-        this.soundSetting = 3;
-        this.myLatLng = new VXLatLng(0.0,0.0);
-        this.myName = "";
-        this.arrival = false;
-        this.departure = false;
+        this.toneControl = 1;                   // Default choice of tone is tone1
+        this.vibeControl = 1;                  // Default choice of vibration is vibration1
+        this.soundSetting = 3;                 // Default sound setting is choice 3
+        this.myLatLng = new VXLatLng(0.0,0.0); // Default LatLag data is 0.0, 0.0
+        this.myName = "";                      // Default location name is an empty string
+        this.arrival = false;                 // Default arrival flag is false
+        this.departure = false;               // Default departure flag is false
     }
 
     public VXLocation(VXLatLng inLL, String inName) {
