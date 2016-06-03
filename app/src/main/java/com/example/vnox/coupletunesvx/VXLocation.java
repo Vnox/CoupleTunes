@@ -17,11 +17,8 @@ import com.example.vnox.coupletunesvx.VXLatLng;
  */
 
 /**
- * Class VXLocation
- * The location class specifically
- * designed for CSE110 Milestone 2
- * created by Vnox - Shuangli Zhou
- * proof read by Thomas- Junru Ren
+ * The location class specifically designed for CSE110 Milestone 2
+ * @author Shuangli Zhou, Junru Ren, Zuqi Chen
  */
 public class VXLocation{
 
