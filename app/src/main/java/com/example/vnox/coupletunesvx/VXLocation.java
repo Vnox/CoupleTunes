@@ -21,15 +21,15 @@ import com.example.vnox.coupletunesvx.VXLatLng;
 * created by Vnox - Shuangli Zhou*/
 public class VXLocation{
 
-    // some fields
-    private int vibeControl;
-    private int toneControl;
-    private VXLatLng myLatLng;
-    private int soundSetting;
-    private String myName;
-    private boolean arrival = false;
-    private boolean departure = false;
-    public boolean inRange = false;
+    // Data Field
+    private int vibeControl;           // Record the choice of vibration
+    private int toneControl;           // Record the choice of tone
+    private VXLatLng myLatLng;          // Record an Adapter for Google's LatLag class
+    private int soundSetting;          // Record the choice of sound
+    private String myName;              // Record the name of this Location
+    private boolean arrival = false;  // Flag for checking arrival
+    private boolean departure = false;// Flag for checking departure
+    public boolean inRange = false;   // Flag for checking if in the range of this Location
 
 
     // Context myContext;
