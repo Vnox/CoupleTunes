@@ -116,5 +116,7 @@ public class LocationListActivity extends AppCompatActivity {
             }
         });
 
+        clearButton.setEnabled(false);
+
     }
 }

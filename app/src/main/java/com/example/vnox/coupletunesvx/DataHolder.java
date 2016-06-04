@@ -25,7 +25,7 @@ public class DataHolder {
     // 2 -> only vibe
     // 3 -> both vibe and sound
     // 0 -> nothing
-    static int theSoundSetting;
+    static int theSoundSetting = 3;
 
     /**
      * Getter method to get the data object

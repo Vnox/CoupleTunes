@@ -43,9 +43,12 @@ public class JUnitTest_VXClasses extends ActivityInstrumentationTestCase2<MainMe
     // Testing other methods
     public void test_VXLocation_others(){
         VXLocation testLoc = new VXLocation();
-        testLoc.setToneControl(2);
+        testLoc.setToneControl(3);
         testLoc.setVibeControl(3);
-        assertEquals(testLoc.getToneControl(), 2);
+        assertEquals(testLoc.getToneControl(), 3);
         assertEquals(testLoc.getVibeControl(), 3);
+        testLoc.vibrateAndRingAri(this.mainMenuActivity);
     }
+
+
 }

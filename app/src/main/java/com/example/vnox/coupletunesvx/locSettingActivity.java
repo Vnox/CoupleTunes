@@ -104,6 +104,7 @@ public class locSettingActivity extends AppCompatActivity {
 
             }
         });
+        testButton.setEnabled(false);
 
         final Button deleteButton = (Button) findViewById(R.id.deleteButton);
 

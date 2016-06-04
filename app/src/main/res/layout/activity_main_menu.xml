@@ -42,17 +42,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="CoupleTunes : )"
+        android:text="VXCoupleTones"
         android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:textSize="44dp"
-        android:textIsSelectable="false" />
+        android:textIsSelectable="false"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TESTPAGE"
+        android:text="Settings"
         android:id="@+id/testButton"
         android:layout_above="@+id/mapViewButton"
         android:layout_alignLeft="@+id/mapViewButton"

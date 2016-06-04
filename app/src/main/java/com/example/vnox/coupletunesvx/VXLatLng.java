@@ -8,7 +8,10 @@ package com.example.vnox.coupletunesvx;
 public class VXLatLng {
     public double latitude;
     public double longitude;
-    public VXLatLng(){}     //default constructor
+    public VXLatLng(){
+        this.latitude = 0.0;
+        this.longitude = 0.0;
+    }     //default constructor
 
     public VXLatLng(Double inLat, Double inLng){
         this.latitude = inLat;

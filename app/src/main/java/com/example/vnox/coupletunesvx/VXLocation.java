@@ -8,7 +8,7 @@ import android.provider.MediaStore;
 import android.widget.Toast;
 
 import com.google.android.gms.common.data.*;
-import com.google.android.gms.common.data.DataHolder;
+//import com.google.android.gms.common.data.DataHolder;
 //import com.google.android.gms.maps.model.LatLng;
 import com.example.vnox.coupletunesvx.VXLatLng;
 
@@ -111,7 +111,7 @@ public class VXLocation{
     // Do the thing
     public void vibrateAndRingDep(Context theCt) {
         // Give context at run time
-        if (this.soundSetting == 1 || this.soundSetting == 3) {
+        if (DataHolder.theSoundSetting == 1 || DataHolder.theSoundSetting == 3) {
             MediaPlayer vnoxPlayer = new MediaPlayer();
             MediaPlayer departurePlayer = new MediaPlayer();
             departurePlayer = MediaPlayer.create(theCt, R.raw.departure);
@@ -127,7 +127,7 @@ public class VXLocation{
             departurePlayer.start();
             departurePlayer.setNextMediaPlayer(vnoxPlayer);
         }
-        if (this.soundSetting == 2 || this.soundSetting == 3) {
+        if (DataHolder.theSoundSetting == 2 || DataHolder.theSoundSetting == 3) {
             Vibrator v = (Vibrator) theCt.getSystemService(Context.VIBRATOR_SERVICE);
             // vibrate different patterns
             long[] pattern1 = new long[]{30, 30, 30, 30};
@@ -136,10 +136,13 @@ public class VXLocation{
 
             if (this.vibeControl == 1) {
                 v.vibrate(pattern1, 0);
+                Toast.makeText(theCt,"Vibrating 1 !", Toast.LENGTH_SHORT).show();
             } else if (this.vibeControl == 2) {
                 v.vibrate(pattern2, 0);
+                Toast.makeText(theCt,"Vibrating 2 !", Toast.LENGTH_SHORT).show();
             } else if (this.vibeControl == 3) {
                 v.vibrate(pattern3, 0);
+                Toast.makeText(theCt,"Vibrating 3 !", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -151,7 +154,7 @@ public class VXLocation{
     public void vibrateAndRingAri(Context theCt) {
         // Give context at run time
 
-        if (this.soundSetting == 1 || this.soundSetting == 3) {
+        if (DataHolder.theSoundSetting == 1 || DataHolder.theSoundSetting == 3) {
             MediaPlayer vnoxPlayer = new MediaPlayer();
             MediaPlayer arrivalPlayer = new MediaPlayer();
             arrivalPlayer = MediaPlayer.create(theCt, R.raw.arrival);
@@ -176,7 +179,7 @@ public class VXLocation{
             arrivalPlayer.start();
             arrivalPlayer.setNextMediaPlayer(vnoxPlayer);
         }
-        if (this.soundSetting == 2 || this.soundSetting == 3) {
+        if (DataHolder.theSoundSetting == 2 || DataHolder.theSoundSetting == 3) {
             Vibrator v = (Vibrator) theCt.getSystemService(Context.VIBRATOR_SERVICE);
             // vibrate different patterns
             long[] pattern1 = new long[]{30, 30, 30, 30};
@@ -185,10 +188,13 @@ public class VXLocation{
 
             if (this.vibeControl == 1) {
                 v.vibrate(pattern1, 0);
+                Toast.makeText(theCt,"Vibrating 1 !", Toast.LENGTH_SHORT).show();
             } else if (this.vibeControl == 2) {
                 v.vibrate(pattern2, 0);
+                Toast.makeText(theCt,"Vibrating 2 !", Toast.LENGTH_SHORT).show();
             } else if (this.vibeControl == 3) {
                 v.vibrate(pattern3, 0);
+                Toast.makeText(theCt,"Vibrating 3 !", Toast.LENGTH_SHORT).show();
             }
 
 

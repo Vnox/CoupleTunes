@@ -22,12 +22,44 @@ public class TestViewActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-                final Firebase myFirebaseRef = new Firebase("https://cse110-vxcoupletones.firebaseio.com/user1");
-                ArrayList<VXLocation> tlist = DataHolder.vxLocList;
-                tlist.get(0).setArrival(true);
-                myFirebaseRef.child("testloclist").setValue(tlist);
-                tlist.get(0).setArrival(false);
-                myFirebaseRef.child("testloclist").setValue(tlist);
+                VXLocation testLocation = new VXLocation();
+                testLocation.setToneControl(2);
+                testLocation.setVibeControl(3);
+                testLocation.vibrateAndRingAri(TestViewActivity.this);
+            }
+        });
+
+        final Button modeButton = (Button) findViewById(R.id.modeButton);
+        if(DataHolder.theSoundSetting == 3){
+            modeButton.setText("Normal Mode");
+        }else if(DataHolder.theSoundSetting == 4){
+            modeButton.setText("Silent Mode");
+        }else if(DataHolder.theSoundSetting == 2){
+            modeButton.setText("Vibrate only Mode");
+        }else if(DataHolder.theSoundSetting == 1){
+            modeButton.setText("Sound only Mode");
+        }
+
+        modeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //change differen modes ...
+                if(DataHolder.theSoundSetting == 1){
+                    DataHolder.theSoundSetting = 2;
+                    modeButton.setText("Vibrate Only Mode");
+                }
+                else if(DataHolder.theSoundSetting == 2){
+                    DataHolder.theSoundSetting = 3;
+                    modeButton.setText("Normal Mode");
+                }
+                else if(DataHolder.theSoundSetting == 3){
+                    DataHolder.theSoundSetting = 4;
+                    modeButton.setText("Silent Mode");
+                }
+                else if(DataHolder.theSoundSetting == 4){
+                    DataHolder.theSoundSetting = 1;
+                    modeButton.setText("Sound Only Mode");
+                }
+
             }
         });
     }
