@@ -47,7 +47,7 @@ public class JUnitTest_VXClasses extends ActivityInstrumentationTestCase2<MainMe
         testLoc.setVibeControl(3);
         assertEquals(testLoc.getToneControl(), 3);
         assertEquals(testLoc.getVibeControl(), 3);
-        testLoc.vibrateAndRingAri(this.mainMenuActivity);
+        //testLoc.vibrateAndRingAri(this.mainMenuActivity);
     }
 
 
